@@ -1,0 +1,28 @@
+﻿@model IEnumerable<ContactList.Models.Contact>
+@{
+    ViewData["Title"] = "Список контактов";
+}
+
+<div>
+    <h3>Список контактов <a href="/Home/Edit/@Guid.Empty" class="btn btn-info">Добавить</a></h3>
+    
+    @(Html
+          .Grid(Model)
+          .Build(columns =>
+          {
+              columns.Add(model => model.FirstName).Titled("Имя");
+              columns.Add(model => model.SecondName).Titled("Фамилия");
+
+              columns.Add(model => model.Phone).Titled("Телефон");
+              columns.Add(model => model.Email).Titled("E-mail");
+
+              columns.Add(model => $"<a href='Home/Edit/{model.Id}' class=\"btn btn-info\">Изменить</a>   " +
+                                             $"<a href='Home/Remove/{model.Id}' class=\"btn btn-info\">Удалить</a>").Encoded(false);
+
+          })
+          .Using(GridFilterMode.Header)
+          .Filterable()
+          .Sortable()
+          .Pageable()
+          )
+</div>

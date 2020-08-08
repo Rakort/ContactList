@@ -1,0 +1,30 @@
+﻿@model ContactList.Models.Contact
+@{
+    ViewData["Title"] = Model.Id == Guid.Empty ? "Добавление контакта" : "Редактирование контакта";
+}
+<div>
+    <h3>@ViewData["Title"]</h3>
+    <form asp-antiforgery="true" asp-action="Edit" asp-controller="Home">
+        <div class="validation" asp-validation-summary="All"></div>
+        <input type="hidden" asp-for="Id" />
+        <table>
+            <tr>
+                <td><p>Имя :</p></td>
+                <td><input type="text" asp-for="FirstName" /> <span asp-validation-for="FirstName"></span> </td>
+            </tr>
+            <tr>
+                <td><p>Фамилия :</p></td>
+                <td><input type="text" asp-for="SecondName" /> <span asp-validation-for="SecondName"></span> </td>
+            </tr>
+            <tr>
+                <td><p>Телефон :</p></td>
+                <td><input type="text" asp-for="Phone" /></td>
+            </tr>
+            <tr>
+                <td><p>E-mail :</p></td>
+                <td><input type="text" asp-for="Email" /> <span asp-validation-for="Email"></span> </td>
+            </tr>
+            <tr><td><input type="submit" value="Сохранить" /> </td><td></td></tr>
+        </table>
+    </form>
+</div>
